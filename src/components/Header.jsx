@@ -4,7 +4,7 @@ import { FiGithub } from "react-icons/fi";
 
 const Header = () => {
   return (
-    <nav className="px-6 border-b flex items-center justify-between border-b-zinc-900 text-zinc-50 h-[50px]">
+    <nav className=" bg-slate-900 px-6 border-b flex items-center justify-between border-b-slate-900 text-slate-50 h-[50px]">
       <div className="flex items-center gap-2 text-lg font-semibold">
         <RiQrScan2Fill />
         QR Code Studio

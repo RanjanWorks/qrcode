@@ -79,12 +79,12 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #18181B; /* Track color */
+  background: #0F172A; /* Track color */
  
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #27272c; /* Thumb color */
+  background: #1E293B; /* Thumb color */
   border-radius: 5px;
 }
 

@@ -32,6 +32,7 @@ const Controls = ({
   setImage,
   setBackgroundImage,
   cornerDotType,
+  image,
   setCornerDotType,
   setCornerDotTypeColor,
   Margin,
@@ -39,11 +40,17 @@ const Controls = ({
   seterrorCorrectionLevel,
   setImageMargin,
   setImageSize,
-  cornerDotTypeColor
+  cornerDotTypeColor,
+  setGradientType,
+  setRender,
 }) => {
   const [uploadedImage, setUploadedImage] = useState(null);
   const fileInputRef = useRef(null);
 
+  const handleSetDotColor = (color) => {
+    setDotColor(color);
+    setGradientType("none"); // Set gradient to false whenever dotColor is updated
+  };
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -56,21 +63,16 @@ const Controls = ({
     setUploadedImage(null);
     setImage(null);
     if (fileInputRef.current) {
-      fileInputRef.current.value = ""; // Clear the file input
+      fileInputRef.current.value = "";
     }
   };
 
-  const handleBackgroundImageUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) setBackgroundImage(URL.createObjectURL(file));
-  };
-
   return (
-    <div className="text-zinc-50 flex flex-col gap-5">
+    <div className="text-slate-50 flex flex-col gap-5">
       <div className="flex flex-col gap-2">
         <h1 className="font-semibold">Content</h1>
         <input
-          className="bg-zinc-900 p-3 rounded-lg outline-none"
+          className="bg-slate-900 border border-slate-800 p-3 rounded-lg outline-none"
           type="text"
           value={url}
           placeholder="Enter URL"
@@ -89,7 +91,7 @@ const Controls = ({
                 <Slider
                   className="w-full lg:w-1/3"
                   onValueChange={(value) => setMargin(value)}
-                  defaultValue={[10]}
+                  defaultValue={[5]}
                   max={50}
                   step={1}
                 />
@@ -97,7 +99,7 @@ const Controls = ({
                 <Select
                   onValueChange={(value) => seterrorCorrectionLevel(value)}
                 >
-                  <SelectTrigger className="w-[50px]">
+                  <SelectTrigger className="w-full lg:w-1/4">
                     <SelectValue placeholder="Q" />
                   </SelectTrigger>
                   <SelectContent>
@@ -105,6 +107,16 @@ const Controls = ({
                     <SelectItem value="M">M</SelectItem>
                     <SelectItem value="L">L</SelectItem>
                     <SelectItem value="H">H</SelectItem>
+                  </SelectContent>
+                </Select>
+                <label htmlFor="">Render</label>
+                <Select onValueChange={(value) => setRender(value)}>
+                  <SelectTrigger className="w-full lg:w-1/4">
+                    <SelectValue placeholder="Canvas" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="canvas">Canvas</SelectItem>
+                    <SelectItem value="svg">Svg</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -115,7 +127,10 @@ const Controls = ({
             <AccordionContent className="border-t py-3">
               <div className="grid grid-cols-[auto,1fr] items-center gap-5">
                 <label htmlFor="">Dot Style</label>
-                <Select onValueChange={(value) => setDotType(value)}>
+                <Select
+                  value={dotType}
+                  onValueChange={(value) => setDotType(value)}
+                >
                   <SelectTrigger className="w-1/2 lg:w-1/4">
                     <SelectValue placeholder="Square" />
                   </SelectTrigger>
@@ -131,13 +146,13 @@ const Controls = ({
                   </SelectContent>
                 </Select>
                 <label htmlFor="">Color</label>
-                <ColorPicker setDotColor={setDotColor} />
+                <ColorPicker setDotColor={handleSetDotColor} />
                 <label htmlFor="">Custom</label>
                 <input
                   type="color"
                   className="bg-transparent"
                   value={dotColor}
-                  onChange={(e) => setDotColor(e.target.value)}
+                  onChange={(e) => handleSetDotColor(e.target.value)}
                 />
               </div>
             </AccordionContent>
@@ -148,7 +163,10 @@ const Controls = ({
             <AccordionContent className="border-t py-3">
               <div className="grid grid-cols-[auto,1fr] items-center gap-5">
                 <label htmlFor="">Corner Style</label>
-                <Select onValueChange={(value) => setCornerType(value)}>
+                <Select
+                  value={cornerType}
+                  onValueChange={(value) => setCornerType(value)}
+                >
                   <SelectTrigger className="w-1/2 lg:w-1/4">
                     <SelectValue placeholder="Square" />
                   </SelectTrigger>
@@ -177,7 +195,10 @@ const Controls = ({
             <AccordionContent className="border-t py-3">
               <div className="grid grid-cols-[auto,1fr] items-center gap-5">
                 <label htmlFor="">Corner Style</label>
-                <Select onValueChange={(value) => setCornerDotType(value)}>
+                <Select
+                  value={cornerDotType}
+                  onValueChange={(value) => setCornerDotType(value)}
+                >
                   <SelectTrigger className="w-1/2 lg:w-1/4">
                     <SelectValue placeholder="Square" />
                   </SelectTrigger>
@@ -192,7 +213,7 @@ const Controls = ({
                 <input
                   type="color"
                   className="bg-transparent"
-                  value={cornerDotTypeColor }
+                  value={cornerDotTypeColor}
                   onChange={(e) => setCornerDotTypeColor(e.target.value)}
                 />
               </div>
@@ -210,11 +231,11 @@ const Controls = ({
                     accept="image/*"
                     type="file"
                     onChange={handleImageUpload}
-                    className=" file:border-none file:bg-zinc-800 file:text-zinc-50 file:rounded-md file:px-4 file:py-2 file:cursor-pointer hover:file:bg-zinc-600"
+                    className=" file:border-none file:bg-slate-800 file:text-slate-50 file:rounded-md file:px-4 file:py-2 file:cursor-pointer hover:file:bg-slate-600"
                   />
                   {uploadedImage && (
                     <button
-                      className="bg-zinc-800 rounded-md py-1 px-3"
+                      className="bg-slate-800 rounded-md py-1 px-3"
                       onClick={handleCancelImage}
                     >
                       Cancel
@@ -224,7 +245,8 @@ const Controls = ({
                 <label htmlFor="">Url</label>
                 <input
                   type="url"
-                  className="bg-zinc-800 outline-none p-3 rounded-md w-full lg:w-1/3"
+                  value={image}
+                  className="bg-slate-800 outline-none p-2 rounded-md w-full lg:w-1/3"
                   onChange={(e) => setImage(e.target.value)}
                 />
                 <label htmlFor="">Size</label>

@@ -5,9 +5,9 @@ import Header from "./components/Header";
 import QRPalletes from "./components/QRPalletes";
 
 function App() {
-  const [url, setUrl] = useState("https://example.com");
+  const [url, setUrl] = useState("Write Text here");
   const [dotColor, setDotColor] = useState("#000000");
-  const [margin, setMargin] = useState(10);
+  const [margin, setMargin] = useState(5);
   const [cornerColor, setCornerColor] = useState("#000000");
   const [backgroundColor, setBackgroundColor] = useState("#ffffff");
   const [dotType, setDotType] = useState("rounded");
@@ -22,12 +22,13 @@ function App() {
   const [errorCorrectionLevel, seterrorCorrectionLevel] = useState("Q");
   const [imageSize, setImageSize] = useState(1);
   const [imageMargin, setImageMargin] = useState(0);
+  const [render, setRender] = useState("canvas");
 
   const [options, setOptions] = useState({
     width: 250,
     height: 250,
     margin: 10,
-    type: "canvas",
+    type: render,
     data: url,
     image: image,
     dotsOptions: { color: dotColor, type: dotType },
@@ -42,6 +43,7 @@ function App() {
       ...options,
       data: url,
       image: image,
+      type: render,
       dotsOptions: {
         color: dotColor,
         type: dotType,
@@ -81,6 +83,7 @@ function App() {
     imageSize,
     imageMargin,
     margin,
+    render,
   ]);
 
   const applyStyle = (style) => {
@@ -94,13 +97,18 @@ function App() {
     setGradientType(style.gradientType || gradientType);
     setCornerDotType(style.cornerDotType || cornerDotType);
     setCornerDotTypeColor(style.cornerDotTypeColor || cornerDotTypeColor);
+    setImage(style.image || "");
+    setImageMargin(4);
+    setImageSize(0.2);
   };
 
   return (
     <>
       <Header />
       <main className="grid grid-cols-1 lg:grid-cols-[1fr,auto] lg:h-[calc(100vh-50px)] w-full ">
+      <div className="absolute -z-10 h-full lg:h-[calc(100vh-50px)] w-full bg-slate-950"><div className="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div></div>
         <section className="flex flex-col p-6 border-r border-r-zinc-800 overflow-y-auto">
+       
           <Controls
             url={url}
             setUrl={setUrl}
@@ -115,6 +123,7 @@ function App() {
             cornerType={cornerType}
             setCornerType={setCornerType}
             setImage={setImage}
+            image={image}
             setBackgroundImage={setBackgroundImage}
             setCornerDotType={setCornerDotType}
             setMargin={setMargin}
@@ -123,11 +132,12 @@ function App() {
             setImageMargin={setImageMargin}
             setCornerDotTypeColor={setCornerDotTypeColor}
             cornerDotTypeColor={cornerDotTypeColor}
+            setGradientType={setGradientType}
+            setRender={setRender}
           />
-          <h1 className="font-semibold py-2">Styles</h1>
-
+          <h1 className="font-semibold py-2 mt-2">Styles</h1>
           <div className="flex">
-            <QRPalletes applyStyle={applyStyle} />
+            <QRPalletes data={url} applyStyle={applyStyle} />
           </div>
         </section>
         <section className=" flex items-start py-6 justify-center ">

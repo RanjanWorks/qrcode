@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/select";
 const QRCodeCanvas = ({ options }) => {
   const qrCodeRef = useRef(null);
-  const [format, setFormate] = useState("png")
+  const [format, setFormate] = useState("png");
   const qrCode = useRef(new QRCodeStyling(options));
 
   useEffect(() => {
@@ -26,12 +26,18 @@ const QRCodeCanvas = ({ options }) => {
   return (
     <div className="px-6 flex flex-col gap-2 text-gray-50">
       <div>Qr Code Preview</div>
-      <div className="rounded-md overflow-hidden"  ref={qrCodeRef} />
+      <div className="rounded-md overflow-hidden" ref={qrCodeRef} />
 
-      <div className="flex  gap-2 bg-zinc-900 rounded-md overflow-hidden">
-       <button onClick={handleDownload} className="w-full bg-white text-black flex items-center gap-2 justify-center"><GoDownload/>Export</button>
+      <div className="flex  gap-2 bg-slate-900 rounded-md overflow-hidden">
+        <button
+          onClick={handleDownload}
+          className="w-full bg-white text-black flex items-center gap-2 justify-center"
+        >
+          <GoDownload />
+          Export
+        </button>
         <Select className="py-0" onValueChange={(value) => setFormate(value)}>
-          <SelectTrigger  className="w-1/2 bg-transparent">
+          <SelectTrigger className="w-1/2 bg-transparent">
             <SelectValue placeholder="PNG" />
           </SelectTrigger>
           <SelectContent>
