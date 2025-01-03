@@ -25,11 +25,11 @@ const qrStyles = [
       cornerColor: "#DA1D49",
       backgroundColor: "#f0f8ff",
       dotType: "dots",
-      cornerType: "circle",
+      cornerType: "",
       gradientColor1: "#DA1D49",
       gradientColor2: "#F6CA01",
       gradientType: "linear",
-      cornerDotType: "circle",
+      cornerDotType: "",
       cornerDotTypeColor: "#DA1D49",
       image:
         "https://static-00.iconduck.com/assets.00/instagram-1-icon-512x512-vtcaw64p.png",
@@ -42,11 +42,11 @@ const qrStyles = [
       cornerColor: "#1873C8",
       backgroundColor: "#f0f8ff",
       dotType: "dots",
-      cornerType: "extra-rounded",
+      cornerType: "classy-rounded",
       gradientColor1: "#ff8c00",
       gradientColor2: "#ffd700",
       gradientType: "none",
-      cornerDotType: "extra-rounded",
+      cornerDotType: "",
       cornerDotTypeColor: "#1873C8",
       image:
         "https://static-00.iconduck.com/assets.00/linkedin-icon-512x512-vkm0drb1.png", // Use your logo here
@@ -75,12 +75,12 @@ const qrStyles = [
       dotColor: "black",
       cornerColor: "#1877F2",
       backgroundColor: "white",
-      dotType: "dots",
+      dotType: "classy-rounded",
       gradientColor1: "#ff8c00",
       gradientColor2: "#ffd700",
       gradientType: "none",
       cornerType: "extra-rounded",
-      cornerDotType: "extra-rounded",
+      cornerDotType: "",
       cornerDotTypeColor: "#1877F2",
       image:
         "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/600px-Facebook_Logo_%282019%29.png", // Use your logo here
@@ -131,7 +131,7 @@ const qrStyles = [
       gradientColor2: "#ffd700",
       gradientType: "none",
       dotType: "dots",
-      cornerType: "extra-rounded",
+      cornerType: "",
       cornerDotType: "dots",
       image:
         "https://static-00.iconduck.com/assets.00/whatsapp-icon-512x511-rczuooxy.png", // Use your logo here
@@ -169,6 +169,23 @@ const qrStyles = [
       cornerDotType: "square",
       image:
         "https://static-00.iconduck.com/assets.00/gmail-icon-512x512-qp7vijfd.png", // Use your logo here
+    },
+  },
+  {
+    label: "SnapChat",
+    style: {
+      dotColor: "black",
+      cornerColor: "black",
+      cornerDotTypeColor: "black",
+      backgroundColor: "white",
+      gradientColor1: "#ff8c00",
+      gradientColor2: "#ffd700",
+      gradientType: "none",
+      dotType: "dots",
+      cornerType: "",
+      cornerDotType: "dot",
+      image:
+        "https://static-00.iconduck.com/assets.00/logo-snapchat-icon-512x511-rlp671m9.png", // Use your logo here
     },
   },
   {

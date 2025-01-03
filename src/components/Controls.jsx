@@ -30,7 +30,6 @@ const Controls = ({
   cornerType,
   setCornerType,
   setImage,
-  setBackgroundImage,
   cornerDotType,
   image,
   setCornerDotType,
@@ -43,6 +42,7 @@ const Controls = ({
   cornerDotTypeColor,
   setGradientType,
   setRender,
+  render,
 }) => {
   const [uploadedImage, setUploadedImage] = useState(null);
   const fileInputRef = useRef(null);
@@ -110,7 +110,7 @@ const Controls = ({
                   </SelectContent>
                 </Select>
                 <label htmlFor="">Render</label>
-                <Select onValueChange={(value) => setRender(value)}>
+                <Select value={render} onValueChange={(value) => setRender(value)}>
                   <SelectTrigger className="w-full lg:w-1/4">
                     <SelectValue placeholder="Canvas" />
                   </SelectTrigger>
@@ -123,7 +123,7 @@ const Controls = ({
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="item-2">
-            <AccordionTrigger>Dots Options</AccordionTrigger>
+            <AccordionTrigger>Body</AccordionTrigger>
             <AccordionContent className="border-t py-3">
               <div className="grid grid-cols-[auto,1fr] items-center gap-5">
                 <label htmlFor="">Dot Style</label>
@@ -159,7 +159,7 @@ const Controls = ({
           </AccordionItem>
 
           <AccordionItem value="item-3">
-            <AccordionTrigger>Corner Square</AccordionTrigger>
+            <AccordionTrigger>Eye Frame</AccordionTrigger>
             <AccordionContent className="border-t py-3">
               <div className="grid grid-cols-[auto,1fr] items-center gap-5">
                 <label htmlFor="">Corner Style</label>
@@ -171,9 +171,9 @@ const Controls = ({
                     <SelectValue placeholder="Square" />
                   </SelectTrigger>
                   <SelectContent>
+                    <SelectItem value={null}>None</SelectItem>
                     <SelectItem value="square">Square</SelectItem>
                     <SelectItem value="dots">Dot</SelectItem>
-
                     <SelectItem value="extra-rounded">Extra-Rounded</SelectItem>
                   </SelectContent>
                 </Select>
@@ -191,7 +191,7 @@ const Controls = ({
           </AccordionItem>
 
           <AccordionItem value="item-4">
-            <AccordionTrigger>Corner Dot</AccordionTrigger>
+            <AccordionTrigger>Eye Ball</AccordionTrigger>
             <AccordionContent className="border-t py-3">
               <div className="grid grid-cols-[auto,1fr] items-center gap-5">
                 <label htmlFor="">Corner Style</label>
@@ -203,6 +203,7 @@ const Controls = ({
                     <SelectValue placeholder="Square" />
                   </SelectTrigger>
                   <SelectContent>
+                    <SelectItem value={null}>None</SelectItem>
                     <SelectItem value="square">Square</SelectItem>
                     <SelectItem value="dots">Dot</SelectItem>
                   </SelectContent>

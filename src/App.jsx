@@ -11,8 +11,8 @@ function App() {
   const [cornerColor, setCornerColor] = useState("#000000");
   const [backgroundColor, setBackgroundColor] = useState("#ffffff");
   const [dotType, setDotType] = useState("rounded");
-  const [cornerType, setCornerType] = useState("extra-rounded");
-  const [cornerDotType, setCornerDotType] = useState("square");
+  const [cornerType, setCornerType] = useState(null);
+  const [cornerDotType, setCornerDotType] = useState(null);
   const [cornerDotTypeColor, setCornerDotTypeColor] = useState("#000");
   const [image, setImage] = useState("");
   const [gradientColor1, setGradientColor1] = useState("#ff0000");
@@ -22,11 +22,13 @@ function App() {
   const [errorCorrectionLevel, seterrorCorrectionLevel] = useState("Q");
   const [imageSize, setImageSize] = useState(1);
   const [imageMargin, setImageMargin] = useState(0);
-  const [render, setRender] = useState("canvas");
+  const [render, setRender] = useState("svg");
+  const [resolution, setResolution] = useState(300);
+
 
   const [options, setOptions] = useState({
-    width: 250,
-    height: 250,
+    width: resolution,
+    height: resolution,
     margin: 10,
     type: render,
     data: url,
@@ -126,6 +128,7 @@ function App() {
             image={image}
             setBackgroundImage={setBackgroundImage}
             setCornerDotType={setCornerDotType}
+            cornerDotType={cornerDotType}
             setMargin={setMargin}
             seterrorCorrectionLevel={seterrorCorrectionLevel}
             setImageSize={setImageSize}
@@ -134,6 +137,8 @@ function App() {
             cornerDotTypeColor={cornerDotTypeColor}
             setGradientType={setGradientType}
             setRender={setRender}
+            render = {render}
+           
           />
           <h1 className="font-semibold py-2 mt-2">Styles</h1>
           <div className="flex">
@@ -141,7 +146,7 @@ function App() {
           </div>
         </section>
         <section className=" flex items-start py-6 justify-center ">
-          <QRCodeCanvas options={options} />
+          <QRCodeCanvas options={options} resolution={resolution}  setResolution ={setResolution}/>
         </section>
       </main>
     </>
